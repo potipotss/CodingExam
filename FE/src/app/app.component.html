@@ -1,0 +1,16 @@
+<div>
+  <textarea [(ngModel)]="inputText" placeholder="Enter text"></textarea>
+</div>
+<div>
+  <button (click)="encode()" [disabled]="isEncodingInProgress">Encode</button>
+  <button (click)="cancel()" [disabled]="!isEncodingInProgress">Cancel</button>
+</div>
+<div *ngIf="isEncodingInProgress || !encodingCancelled">
+  <h3>Results:</h3>
+  <ul>
+    <li *ngFor="let partialResult of result">{{ partialResult }}</li>
+  </ul>
+  <div *ngIf="encodingCompleted">{{ completedMessage }}</div>
+</div>
+<div *ngIf="encodingCancelled">Cancel request received. Cancelling the encoding process.</div>
+
